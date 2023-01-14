@@ -9,23 +9,24 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/leyuskckiran1510/FMTL">
+  <a href="https://github.com/leyuskckiran1510/Annotated-Link">
     <img src="ExtensionFireFox/icon.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h1 align="center">FMTL</h1>
+  <h1 align="center">Annotated-Link</h1>
 
   <p align="center">
-   FMTL is a browser extension designed to make people to learn something new. Insted of of doing unhealthy things on internet 24/7.
+    Professional Link Sharing and Annotation Extension for Browser .To share link with text highlited with different colors, comment's attached to the highlight and other stuff for proper link sharing.
+   It is designed to make collabrations easier between the developers and users.
     <br />
-    <a href="https://github.com/leyuskckiran1510/FMTL"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/leyuskckiran1510/Annotated-Link"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://youtu.be/unknown">View Demo</a>
     ·
-    <a href="https://github.com/leyuskckiran1510/FMTL/issues">Report Bug</a>
+    <a href="https://github.com/leyuskckiran1510/Annotated-Link/issues">Report Bug</a>
     ·
-    <a href="https://github.com/leyuskckiran1510/FMTL/issues">Request Feature</a>
+    <a href="https://github.com/leyuskckiran1510/Annotated-Link/issues">Request Feature</a>
   </p>
 </div>
 
@@ -62,7 +63,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<!--[![Product Name Screen Shot][product-screenshot]](https://github.com/leyuskc/FMTL)-->
+<!--[![Product Name Screen Shot][product-screenshot]](https://github.com/leyuskc/Annotated-Link)-->
 
 ### "It is an easy-to-use extension or plugin for your browser. To use it, simply install it and choose what you want to learn. Then let it do its thing."
 
@@ -96,8 +97,8 @@ _Now the packages installation and file setup part.Follow the step below and you
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/leyuskckiran1510/FMTL.git
-   cd ./FMTL
+   git clone https://github.com/leyuskckiran1510/Annotated-Link.git
+   cd ./Annotated-Link
    ```
    I assume you are in the code folder after this till to very end.
 2. Now Install the Extension To Your Browser.
@@ -164,10 +165,10 @@ _Now the packages installation and file setup part.Follow the step below and you
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-It main use is for the lazy people and distractive people; who have less self control. It will act like a gaurdian and ask you to solve a problem based on the topic you selected to learn. Untill You Solve the problem You will not be able to access internet in your Browser.<br>
-_Obviously if you don't have any intention to learn you can disable the extension or remove it._
+Professional Link Sharing and Annotation Extension for Browser which makes easier to share link with text highlited , commented and other stuff for proper link sharing. <br>
+If you want to share a link for a documentations but you want the others to look exactly where you want them to read. Normally many websites adapte to selection with id (#id) methods but sometime these paragraphs may be huge. So in these cases you can  use it to highlight the particular text, color it, resize the selected text, add comment to the selected text and many more in comming updates.
 
-_For more examples, please refer to the [Documentation](https://github.com/leyuskckiran1510/FMTL)._
+_For more examples, please refer to the [Documentation](https://github.com/leyuskckiran1510/Annotated-Link)._
 
 _A Example or simple usecase video may be uploaded to youtube if uploaded then you can click this link [Video](https://youtu.be/xyz)_
 
@@ -179,7 +180,7 @@ _A Example or simple usecase video may be uploaded to youtube if uploaded then y
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-See the [open issues](https://github.com/leyuskckiran1510/FMTL/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/leyuskckiran1510/Annotated-Link/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -206,7 +207,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the GNU license. See `LICENSE.txt` for more information.
+Distributed under the GNU license. See (<a href="#readme-top">`LICENSE.txt`</a>) for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -216,7 +217,7 @@ Distributed under the GNU license. See `LICENSE.txt` for more information.
 ## Contact
 
 
-Project Link: [Click ME](https://github.com/leyuskckiran1510/FMTL)
+Project Link: [Click ME](https://github.com/leyuskckiran1510/Annotated-Link)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -235,16 +236,16 @@ Also Thanks to [@othneildrew](https://github.com/othneildrew/Best-README-Templat
 
 
 
-[contributors-shield]: https://img.shields.io/github/contributors/leyuskckiran1510/FMTL.svg?style=for-the-badge
-[contributors-url]: https://github.com/leyuskckiran1510/FMTL/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/leyuskckiran1510/FMTL.svg?style=for-the-badge
-[forks-url]: https://github.com/leyuskckiran1510/FMTL/network/members
-[stars-shield]: https://img.shields.io/github/stars/leyuskckiran1510/FMTL.svg?style=for-the-badge
-[stars-url]: https://github.com/leyuskckiran1510/FMTL/stargazers
-[issues-shield]: https://img.shields.io/github/issues/leyuskckiran1510/FMTL.svg?style=for-the-badge
-[issues-url]: https://github.com/leyuskckiran1510/FMTL/issues
-[license-shield]: https://img.shields.io/github/license/leyuskckiran1510/FMTL.svg?style=for-the-badge
-[license-url]: https://github.com/leyuskckiran1510/FMTL/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/leyuskckiran1510/Annotated-Link.svg?style=for-the-badge
+[contributors-url]: https://github.com/leyuskckiran1510/Annotated-Link/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/leyuskckiran1510/Annotated-Link.svg?style=for-the-badge
+[forks-url]: https://github.com/leyuskckiran1510/Annotated-Link/network/members
+[stars-shield]: https://img.shields.io/github/stars/leyuskckiran1510/Annotated-Link.svg?style=for-the-badge
+[stars-url]: https://github.com/leyuskckiran1510/Annotated-Link/stargazers
+[issues-shield]: https://img.shields.io/github/issues/leyuskckiran1510/Annotated-Link.svg?style=for-the-badge
+[issues-url]: https://github.com/leyuskckiran1510/Annotated-Link/issues
+[license-shield]: https://img.shields.io/github/license/leyuskckiran1510/Annotated-Link.svg?style=for-the-badge
+[license-url]: https://github.com/leyuskckiran1510/Annotated-Link/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/leyuskc
 [product-screenshot]: images/screenshot.png
