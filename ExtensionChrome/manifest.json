@@ -1,24 +1,23 @@
 {
-    "manifest_version": 2,
     "name": "Annotated-Link",
     "description": "A simple extension that does something useful.",
     "version": "1.0",
     "homepage_url": "https://github.com/leyuskckiran1510/Annotated-Link",
-    "permissions": [
-                    "<all_urls>",
+    "manifest_version": 3,
+    "permissions": ["contextMenus",
                     "activeTab",
                     "tabs",
                     "webNavigation",
-                    "contextMenus"
+                    "contextMenus",
+                    "scripting"
                  ],
     "background": {
-        "scripts": [
-                    "background.js"
-                   ],
+        "service_worker": "background.js",
         "type": "module"
     },
-    "browser_action": {
+    "action": {
         "default_icon": "icon.png",
-        "default_title": "Annotated-Link"
+        "default_title": "Annotated-Link",
+        "default_popup": "pop.html"
     }
 }

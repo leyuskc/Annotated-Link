@@ -6,11 +6,12 @@
     "homepage_url": "https://github.com/leyuskckiran1510/Annotated-Link",
     "permissions": [
                     "<all_urls>",
+                    "contextMenus",
                     "activeTab",
                     "tabs",
-                    "storage",
-                    "scripting",
-                    "webNavigation"
+                    "webNavigation",
+                    "contextMenus",
+                    "scripting"
                  ],
 
     "background": {
