@@ -7,22 +7,36 @@ chrome.runtime.onInstalled.addListener(async() => {
             id: id,
             title: title,
             type: 'normal',
-            contexts: ['selection'],
+            contexts: ['all'],
         })
     }
 })
 
 
 chrome.contextMenus.onClicked.addListener((item, tab) => {
+    let codes = ['marker.js', 'url.js', 'parse.js']
     let id = item.menuItemId
     let selection = item.selectionText
+    codes = codes[Number(id)]
+    console.log(codes)
     chrome.scripting.executeScript({
             target: {
                 tabId: tab.id,
                 allFrames: true
             },
-            files: ['pop.js'],
+            files: [codes],
         },
         () => {})
     console.log(id, selection, item)
 })
+
+// chrome.webNavigation.onCompleted.addListener((details) => {
+//     chrome.scripting.executeScript({
+//             target: {
+//                 tabId: details.tabId,
+//                 allFrames: true
+//             },
+//             files: ['parse.js'],
+//         },
+//         () => {})
+// })

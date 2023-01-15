@@ -1,4 +1,5 @@
 export const menus = {
-    'hl': 'Highlight',
-    'cm': 'Comment'
+    0: 'Annote',
+    1: 'URL',
+    2: 'Parse'
 };
