@@ -18,7 +18,7 @@ chrome.contextMenus.onClicked.addListener((item, tab) => {
     let id = item.menuItemId
     let selection = item.selectionText
     codes = codes[Number(id)]
-    console.log(codes)
+    
     chrome.scripting.executeScript({
             target: {
                 tabId: tab.id,
@@ -27,16 +27,5 @@ chrome.contextMenus.onClicked.addListener((item, tab) => {
             files: [codes],
         },
         () => {})
-    console.log(id, selection, item)
+    
 })
-
-// chrome.webNavigation.onCompleted.addListener((details) => {
-//     chrome.scripting.executeScript({
-//             target: {
-//                 tabId: details.tabId,
-//                 allFrames: true
-//             },
-//             files: ['parse.js'],
-//         },
-//         () => {})
-// })

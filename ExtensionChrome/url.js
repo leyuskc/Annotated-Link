@@ -1,9 +1,3 @@
-ids = ['#PICKER-ANOTE-',
-	'#BUTTON-ANOTE-',
-	'#COMMENT-ANOTE-'
-	]
-
-
 getPath = (element) => {
     var path = [];
     while (element.parentNode !== null) {
@@ -24,14 +18,12 @@ getPath = (element) => {
 datas = new Array()
 ids = document.body.getAttribute('ids').split(',')
 ids.forEach((x) => {
-    if (!x || x == 'null' || x == null) return
+    if (!x || x == 'null' || x == null || !Number(x)) return 1
     let element = document.querySelector(`#COLOR-ANOTE-${x}`)
     let parent = element.parentElement
     let text = element.querySelector(`#COMMENT-ANOTE-${x}`).value
     let color = element.querySelector(`#PICKER-ANOTE-${x}`).value
     let path = getPath(parent).slice(1)
-
-    //console.log(element, parent, text, color, path, navigation)
     datas.push({
         id: x,
         path: path,
@@ -42,10 +34,6 @@ ids.forEach((x) => {
 
 
 string = JSON.stringify(datas)
-parsed = JSON.parse(string)
-console.table(string, datas, parsed)
-
-var encodedString = window.btoa(string);
+encodedString = window.btoa(string);
 url = window.location + '#' + encodedString, JSON.parse(window.atob(encodedString))
 navigator.clipboard.writeText(url)
-console.log(url)

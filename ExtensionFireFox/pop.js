@@ -29,7 +29,7 @@ function func(a) {
     index = a.target.innerHTML.indexOf(select)
     temp = `${temp.slice(0,index)}<span id='colorYTVYT${c}' style="color: ${colrand()};background: ${colrand()}3b;">${temp.slice(index,index+select.length)}</span>${temp.slice(index+select.length)}`
     a.target.innerHTML = `${temp}`
-    console.log(c)
+    
 }
 if (c == 0) {
     document.addEventListener("mouseup", func)

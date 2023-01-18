@@ -6,21 +6,68 @@ nav = (arr) => {
     return element
 }
 
-//url=https://developer.chrome.com/docs/extensions/reference/action/#W3sicGF0aCI6WzEsMCw1LDEsMSwwLDMsMjZdLCJjb21tZW50IjoiYW5vdGhlciB3cm9uZyIsImNvbG9yIjoiI2QwMjUyNSJ9LHsicGF0aCI6WzEsMCw1LDEsMSwwLDMsMjVdLCJjb21tZW50IjoiUG9wdXBEZWZpbmF0aW9uaXMgV3JvbmciLCJjb2xvciI6IiNlZTNmM2YifSx7InBhdGgiOlsxLDAsNSwxLDEsMCwzLDldLCJjb21tZW50IjoiIiwiY29sb3IiOiIjY2YzYTNhIn1d
-
+common = `display:none;
+        position: absolute;
+        border: solid #cbc3c3;
+        border-radius: 4px;
+        background: #e9e9e9;
+        `
+style1=`${common}
+        width: 25px;
+        height: 25px;
+        `
+style2=`${common}
+        width: 32%;
+        margin: 0px 2px 0px 20px;
+        color: #5a4f4f;
+        `
+style3=`${common}
+        height: 34px;
+        margin: 0px 5px 0px 170px;
+        color: hwb(0deg 29% 25% / 99%);
+        font-weight: 600;
+        padding: 0px 6px 0px 10px;
+        text-align: center;
+        `
 
 
 mark = (element = '', id = '', color = '', text = '') => {
-    if (element == '') return 1
+    if (!element) return 1
     html = element.innerHTML
-    element.innerHTML = `<span id='COLOR-ANOTE-${id}' style="background:${color}" ><input type="color" id='PICKER-ANOTE-${id}' style="display:hidden;"><input type='text' id="COMMENT-ANOTE-${id}" style="display:hidden;" placeholder="${text}"><button id="BUTTON-ANOTE-${id}" style="display:hidden;">Remove</button>${html}</span>`
+/* 
+    Simple just to avoid some Xss injections Not Much then that
+    id :-
+            [+]are numbers so max 999 is suitable 
+    color :-
+            [+] is hex value so it ranges from #000000 to #ffffff and 2additional bits for transparency if used
+            [+] it must include # ; didn't checked if it was prefix or not just for fun you can change it to
+                `color.startsWith('#')` for more secure if you need
+    Making more secure:-
+        1) id.replace(/\d+/,'').length>1 
+        2) color.startsWith('#')
+        3) color.replace(/[#0-9a-f]{3,9}/,'').length>1
+    Didn't implemented it for fun to see some one try Xss
+
+*/
+    if (id.length>3 || !color.includes('#') || color.length >8 ) return 1
+    element.innerHTML = `
+    <span id='COLOR-ANOTE-${id}' style="background:${color}" >
+    <input type="color" id="PICKER-ANOTE-${id}" 
+    style="${style1}" value="${color}">
+    <input type='text' id="COMMENT-ANOTE-${id}" style="${style2}">
+    <button id="BUTTON-ANOTE-${id}" style="${style3}">Remove</button>${html}</span>`
+
+    document.querySelector(`#COMMENT-ANOTE-${id}`).setAttribute("placeholder", text);
+    document.body.setAttribute('ids', `${id},` +
+        (document.body.getAttribute('ids')??'0')
+    )
+    
     document.querySelector(`#PICKER-ANOTE-${id}`).addEventListener('input', (e) => {
         {
             let spaned = document.querySelector(`#COLOR-ANOTE-${id}`)
             spaned.style.background = document.querySelector(`#PICKER-ANOTE-${id}`).value
         }
     })
-    document.querySelector(`#COMMENT-ANOTE-${id}`).value = text
 
     document.querySelector(`#COLOR-ANOTE-${id}`).addEventListener("mouseover", function() {
         document.querySelector(`#PICKER-ANOTE-${id}`).style.display = "block"
@@ -32,15 +79,11 @@ mark = (element = '', id = '', color = '', text = '') => {
         document.querySelector(`#BUTTON-ANOTE-${id}`).style.display = "none"
         document.querySelector(`#COMMENT-ANOTE-${id}`).style.display = "none"
     })
-    document.body.setAttribute('ids', `${id},` +
-        document.body.getAttribute('ids')
-    )
     document.querySelector(`#BUTTON-ANOTE-${id}`).addEventListener("click", function() {
         document.querySelector(`#COLOR-ANOTE-${id}`).replaceWith(document.querySelector(`#COLOR-ANOTE-${id}`).innerText)
         ids = document.body.getAttribute('ids').split(',').filter((x) => x != `${id}`).join(',')
         document.body.setAttribute('ids', ids)
     })
-
 }
 
 pieces = document.location.toString().split('#')
@@ -50,5 +93,4 @@ datas.forEach(x => {
     elementList = nav(x.path)
     element = elementList[0].parentElement
     mark(element, x.id, x.color, x.comment)
-
 })
