@@ -22,7 +22,7 @@
     <a href="https://github.com/leyuskckiran1510/Annotated-Link"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://youtu.be/unknown">View Demo</a>
+    <a href="https://youtu.be/VJFZETC0QiM">View Demo</a>
     ·
     <a href="https://github.com/leyuskckiran1510/Annotated-Link/issues">Report Bug</a>
     ·
@@ -85,7 +85,7 @@ It is built with javascript wih DOMJs
 <!-- GETTING STARTED -->
 ## Getting Started
 
-So If you want to use it for yourself then here is how.
+So If want to use it for yourself then here is how.
 
 ### Prerequisites
 
@@ -170,7 +170,7 @@ If you want to share a link for a documentations but you want the others to look
 
 _For more examples, please refer to the [Documentation](https://github.com/leyuskckiran1510/Annotated-Link)._
 
-_A Example or simple usecase video may be uploaded to youtube if uploaded then you can click this link [Video](https://youtu.be/xyz)_
+_A Example or simple usecase video may be uploaded to youtube if uploaded then you can click this link [Video](https://youtu.be/VJFZETC0QiM)_
 
 ```md
 #UseCase and Images will be published after the project is completed.
