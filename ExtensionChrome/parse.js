@@ -5,25 +5,31 @@ nav = (arr) => {
     })
     return element
 }
+ 
+mainstyle=`display: grid;
+    grid-template-columns: 22px 226px 104px;
+    grid-auto-rows: auto;
+    position: absolute;
+        `
 
-common = `display:none;
-        position: absolute;
+common = `
         border: solid #cbc3c3;
         border-radius: 4px;
         background: #e9e9e9;
         `
 style1=`${common}
+        column: 1;
         width: 25px;
         height: 25px;
         `
 style2=`${common}
-        width: 32%;
-        margin: 0px 2px 0px 20px;
+        column: 2;
         color: #5a4f4f;
         `
 style3=`${common}
+        column:3;
+        position: inline;
         height: 34px;
-        margin: 0px 5px 0px 170px;
         color: hwb(0deg 29% 25% / 99%);
         font-weight: 600;
         padding: 0px 6px 0px 10px;
@@ -50,14 +56,25 @@ mark = (element = '', id = '', color = '', text = '') => {
 
 */
     if (id.length>3 || !color.includes('#') || color.length >8 ) return 1
-    element.innerHTML = `
+    /*element.innerHTML = `
     <span id='COLOR-ANOTE-${id}' style="background:${color}" >
+    <div>
     <input type="color" id="PICKER-ANOTE-${id}" 
     style="${style1}" value="${color}">
     <input type='text' id="COMMENT-ANOTE-${id}" style="${style2}">
-    <button id="BUTTON-ANOTE-${id}" style="${style3}">Remove</button>${html}</span>`
+    <button id="BUTTON-ANOTE-${id}" style="${style3}">Remove</button>
+    <div>${html}</span>`*/
+    element.innerHTML = `
+    <span id='COLOR-ANOTE-${id}' style="background:${color}" >
+    <div style="${mainstyle}" id='COLOR-ANOTE-DIV-${id}'>
+    <input type="color" id="PICKER-ANOTE-${id}" 
+    style="${style1}" value="${color}">
+    <input type='text' id="COMMENT-ANOTE-${id}" style="${style2}">
+    <button id="BUTTON-ANOTE-${id}" style="${style3}">Remove</button>
+    </div>${html}</span>`
 
     document.querySelector(`#COMMENT-ANOTE-${id}`).setAttribute("placeholder", text);
+    document.querySelector(`#COMMENT-ANOTE-${id}`).setAttribute("value", text);
     document.body.setAttribute('ids', `${id},` +
         (document.body.getAttribute('ids')??'0')
     )
@@ -70,14 +87,10 @@ mark = (element = '', id = '', color = '', text = '') => {
     })
 
     document.querySelector(`#COLOR-ANOTE-${id}`).addEventListener("mouseover", function() {
-        document.querySelector(`#PICKER-ANOTE-${id}`).style.display = "block"
-        document.querySelector(`#BUTTON-ANOTE-${id}`).style.display = "block"
-        document.querySelector(`#COMMENT-ANOTE-${id}`).style.display = "block"
+        document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.display = "grid"
     })
     document.querySelector(`#COLOR-ANOTE-${id}`).addEventListener("mouseout", function() {
-        document.querySelector(`#PICKER-ANOTE-${id}`).style.display = "none"
-        document.querySelector(`#BUTTON-ANOTE-${id}`).style.display = "none"
-        document.querySelector(`#COMMENT-ANOTE-${id}`).style.display = "none"
+        document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.display = "none"
     })
     document.querySelector(`#BUTTON-ANOTE-${id}`).addEventListener("click", function() {
         document.querySelector(`#COLOR-ANOTE-${id}`).replaceWith(document.querySelector(`#COLOR-ANOTE-${id}`).innerText)

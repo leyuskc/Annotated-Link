@@ -20,6 +20,7 @@ ids = document.body.getAttribute('ids').split(',')
 ids.forEach((x) => {
     if (!x || x == 'null' || x == null || !Number(x)) return 1
     let element = document.querySelector(`#COLOR-ANOTE-${x}`)
+    if (element?.parentElement == undefined) return
     let parent = element.parentElement
     let text = element.querySelector(`#COMMENT-ANOTE-${x}`).value
     let color = element.querySelector(`#PICKER-ANOTE-${x}`).value
