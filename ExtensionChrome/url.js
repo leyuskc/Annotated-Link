@@ -22,6 +22,7 @@ ids.forEach((x) => {
     let element = document.querySelector(`#COLOR-ANOTE-${x}`)
     if (element?.parentElement == undefined) return
     let parent = element.parentElement
+    let pointer= element.getAttribute('range').split('|')
     let text = element.querySelector(`#COMMENT-ANOTE-${x}`).value
     let color = element.querySelector(`#PICKER-ANOTE-${x}`).value
     let path = getPath(parent).slice(1)
@@ -29,7 +30,9 @@ ids.forEach((x) => {
         id: x,
         path: path,
         comment: text,
-        color: color
+        color: color,
+        offset:pointer[0],
+        length:pointer[1],
     })
 })
 

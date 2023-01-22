@@ -2,6 +2,8 @@ mainstyle=`display: grid;
     grid-template-columns: 22px 226px 104px;
     grid-auto-rows: auto;
     position: absolute;
+    visibility: hidden;
+    z-index: -3;
         `
 
 common = `
@@ -12,7 +14,7 @@ common = `
 style1=`${common}
         column: 1;
         width: 25px;
-        height: 25px;
+        height: auto;
         `
 style2=`${common}
         column: 2;
@@ -28,6 +30,10 @@ style3=`${common}
         text-align: center;
         `
 flag = true
+chrome.storage.sync.get((res) => {
+        if (Object.keys(res).length == 0) return
+        run = Number(res.run)
+    })
 //setting Ids to manage the total anotations
 document.body.setAttribute('ids', (
         document.body.getAttribute('ids') ?? '0')
@@ -36,8 +42,6 @@ document.body.setAttribute('ids', (
     .sort((a, b) => (a - b))
     .join()
 )
-
-
 HighEnd = (html,selection)=>{
     offset = html.innerText.indexOf(selection)
     console.log("offsets",offset)
@@ -70,13 +74,13 @@ HighEnd = (html,selection)=>{
 //OnSelectionChange Events tiggers on every character addition and subtraction from th selection
 //which leads buggy selection so just toggle th flag on selection 
 document.addEventListener('selectionchange', () => {
-    if (window.getSelection().toString().length > 10)
+    if (window.getSelection().toString().length > 10 && run)
         flag = false
 })
 
 //now with the above flag check for mouse relize of mouse up and only tigger the marker 
 document.addEventListener('mouseup', () => {
-    if (flag === false) {
+    if (flag === false && run) {
         let id = (document.body.getAttribute('ids') ?? '0')
         .match(/\d+/g)
         .map(x => Number(x)).sort((a,b)=>(a-b))
@@ -88,14 +92,13 @@ document.addEventListener('mouseup', () => {
         range.insertNode(c)
         let html = range.commonAncestorContainer
         if (selection.toString().length < 10) return
-        //HighEnd Marker Can Cost high cpu usage unlock on risk
-        //htmly = HighEnd(html,selection)
-        html = html.innerText
+        let offset = html.innerText.replace('Remove','').indexOf(selection)
+        html = html.innerText.replace('Remove','')
         .split(selection.toString())
-        .join(`<span id='COLOR-ANOTE-${id}'>
-            <div style="${mainstyle}" id='COLOR-ANOTE-DIV-${id}'>
+        .join(`<span id='COLOR-ANOTE-${id}' range="${offset}|${selection.toString().length}">
+            <div style="${mainstyle}" id='COLOR-ANOTE-DIV-${id}' >
             <input type="color" id='PICKER-ANOTE-${id}' style="${style1}">
-            <input type='text' id="COMMENT-ANOTE-${id}" style="${style2}">
+            <textarea type='text' id="COMMENT-ANOTE-${id}" style="${style2}"></textarea>
             <button id="BUTTON-ANOTE-${id}" style="${style3}">Remove</button>
             </div>
             ${selection.toString()}</span>`)
@@ -107,10 +110,14 @@ document.addEventListener('mouseup', () => {
             }
         })
         document.querySelector(`#COLOR-ANOTE-${id}`).addEventListener("mouseover", function() {
-        document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.display = "grid"
-    })
+            document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.position = "relative"
+            document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.zIndex="1"
+            document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.visibility = "visible"
+            })
     document.querySelector(`#COLOR-ANOTE-${id}`).addEventListener("mouseout", function() {
-        document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.display = "none"
+        document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.position = "absolute"
+        document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.zIndex="-3"
+        document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.visibility = "hidden"
     })
         document.body.setAttribute('ids', `${id},` +
             document.body.getAttribute('ids')

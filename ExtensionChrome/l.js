@@ -1,5 +1,5 @@
 export const menus = {
-    0: 'Annote',
-    1: 'URL',
-    2: 'Parse'
+    0: ['Annote','checkbox'],
+    1: ['URL','normal'],
+    2: ['Parse','normal']
 };

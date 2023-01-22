@@ -37,9 +37,9 @@ style3=`${common}
         `
 
 
-mark = (element = '', id = '', color = '', text = '') => {
+mark = (element = '', id = '', color = '', text = '',offset='',length='') => {
     if (!element) return 1
-    html = element.innerHTML
+    html = element.innerText
 /* 
     Simple just to avoid some Xss injections Not Much then that
     id :-
@@ -56,22 +56,14 @@ mark = (element = '', id = '', color = '', text = '') => {
 
 */
     if (id.length>3 || !color.includes('#') || color.length >8 ) return 1
-    /*element.innerHTML = `
-    <span id='COLOR-ANOTE-${id}' style="background:${color}" >
-    <div>
-    <input type="color" id="PICKER-ANOTE-${id}" 
-    style="${style1}" value="${color}">
-    <input type='text' id="COMMENT-ANOTE-${id}" style="${style2}">
-    <button id="BUTTON-ANOTE-${id}" style="${style3}">Remove</button>
-    <div>${html}</span>`*/
-    element.innerHTML = `
-    <span id='COLOR-ANOTE-${id}' style="background:${color}" >
+    element.innerHTML = html.slice(0,Number(offset))+`
+    <span id='COLOR-ANOTE-${id}' style="background:${color}" range="${offset}|${length}">
     <div style="${mainstyle}" id='COLOR-ANOTE-DIV-${id}'>
     <input type="color" id="PICKER-ANOTE-${id}" 
     style="${style1}" value="${color}">
     <input type='text' id="COMMENT-ANOTE-${id}" style="${style2}">
     <button id="BUTTON-ANOTE-${id}" style="${style3}">Remove</button>
-    </div>${html}</span>`
+    </div>${html.slice(Number(offset),Number(offset)+Number(length))}</span>`+html.slice(Number(offset)+Number(length))
 
     document.querySelector(`#COMMENT-ANOTE-${id}`).setAttribute("placeholder", text);
     document.querySelector(`#COMMENT-ANOTE-${id}`).setAttribute("value", text);
@@ -105,5 +97,5 @@ datas = JSON.parse(window.atob(encodedPart))
 datas.forEach(x => {
     elementList = nav(x.path)
     element = elementList[0].parentElement
-    mark(element, x.id, x.color, x.comment)
+    mark(element, x.id, x.color, x.comment,x.offset,x.length)
 })
