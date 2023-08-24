@@ -249,6 +249,6 @@ Also Thanks to [@othneildrew](https://github.com/othneildrew/Best-README-Templat
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/leyuskc
 [product-screenshot]: images/screenshot.png
-[javascript]:https://img.shields.io/badge/javascript-000000?style=for-the-badge&logo=python
+[javascript]:https://img.shields.io/badge/javascript-000000?style=for-the-badge&logo=js
 [javascriptorg]:https://www.javascript.com/
 
