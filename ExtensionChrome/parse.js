@@ -5,11 +5,15 @@ nav = (arr) => {
     })
     return element
 }
- 
+
 mainstyle=`display: grid;
+    visibility: hidden;
+    opacity: 0;
     grid-template-columns: 22px 226px 104px;
     grid-auto-rows: auto;
     position: absolute;
+    -webkit-transition: opacity 600ms, visibility 600ms;
+    transition: opacity 600ms, visibility 600ms;
         `
 
 common = `
@@ -46,24 +50,18 @@ mark = (element = '', id = '', color = '', text = '',offset='',length='') => {
             [+]are numbers so max 999 is suitable 
     color :-
             [+] is hex value so it ranges from #000000 to #ffffff and 2additional bits for transparency if used
-            [+] it must include # ; didn't checked if it was prefix or not just for fun you can change it to
-                `color.startsWith('#')` for more secure if you need
-    Making more secure:-
-        1) id.replace(/\d+/,'').length>1 
-        2) color.startsWith('#')
-        3) color.replace(/[#0-9a-f]{3,9}/,'').length>1
-    Didn't implemented it for fun to see some one try Xss
 
 */
-    if (id.length>3 || !color.includes('#') || color.length >8 ) return 1
+    if (id.length>3 || color.startsWith("#") || color.length >8 ) return
     element.innerHTML = html.slice(0,Number(offset))+`
     <span id='COLOR-ANOTE-${id}' style="background:${color}" range="${offset}|${length}">
+    ${html.slice(Number(offset),Number(offset)+Number(length))}
     <div style="${mainstyle}" id='COLOR-ANOTE-DIV-${id}'>
     <input type="color" id="PICKER-ANOTE-${id}" 
     style="${style1}" value="${color}">
     <input type='text' id="COMMENT-ANOTE-${id}" style="${style2}">
     <button id="BUTTON-ANOTE-${id}" style="${style3}">Remove</button>
-    </div>${html.slice(Number(offset),Number(offset)+Number(length))}</span>`+html.slice(Number(offset)+Number(length))
+    </div></span>`+html.slice(Number(offset)+Number(length))
 
     document.querySelector(`#COMMENT-ANOTE-${id}`).setAttribute("placeholder", text);
     document.querySelector(`#COMMENT-ANOTE-${id}`).setAttribute("value", text);
@@ -78,12 +76,14 @@ mark = (element = '', id = '', color = '', text = '',offset='',length='') => {
         }
     })
 
-    document.querySelector(`#COLOR-ANOTE-${id}`).addEventListener("mouseover", function() {
-        document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.display = "grid"
-    })
-    document.querySelector(`#COLOR-ANOTE-${id}`).addEventListener("mouseout", function() {
-        document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.display = "none"
-    })
+    document.querySelector(`#COLOR-ANOTE-${id}`).addEventListener("mouseover", () => {
+            document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.opacity = "1"
+            document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.visibility = "visible"
+        })
+        document.querySelector(`#COLOR-ANOTE-${id}`).addEventListener("mouseout", () => {
+            document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.opacity = "0"
+            document.querySelector(`#COLOR-ANOTE-DIV-${id}`).style.visibility = "none"
+        })
     document.querySelector(`#BUTTON-ANOTE-${id}`).addEventListener("click", function() {
         document.querySelector(`#COLOR-ANOTE-${id}`).replaceWith(document.querySelector(`#COLOR-ANOTE-${id}`).innerText)
         ids = document.body.getAttribute('ids').split(',').filter((x) => x != `${id}`).join(',')

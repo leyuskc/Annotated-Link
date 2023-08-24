@@ -1,0 +1,6 @@
+# removing test files
+test*
+delete*
+
+# removing automation python files
+*.py

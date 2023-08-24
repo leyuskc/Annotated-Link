@@ -11,7 +11,7 @@
 <div align="center">
   <a href="https://github.com/leyuskckiran1510/Annotated-Link">
     <img src="ExtensionFireFox/icon.png" alt="Logo" width="80" height="80">
-  </a>
+ </a>
 
   <h1 align="center">Annotated-Link</h1>
 
